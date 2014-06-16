@@ -1,8 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
+#include "CDGFile.h"
 
 class ofApp : public ofBaseApp{
+    
+    CDGFile cdgFile;
+    ofImage cdgScreen;
+    
 	public:
 		void setup();
 		void update();

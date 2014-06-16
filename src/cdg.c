@@ -113,26 +113,6 @@ void CDG_TileBlockXOR(unsigned char * data)
 	}
 }
 
-void GpSetPaletteEntry ( u8 i, u8 r, u8 g, u8 b )
-{
-	GP_PALETTEENTRY entry = GP_RGB24(r,g,b);
-	GpPaletteEntryChange ( i, 1, &entry, 0 );
-}
-
-void CDG_LoadCLUT(unsigned char * data, short first)
-{
-	int j=0;
-	for (int i=0;i<8;i++)
-	{
-		u8 r = ((data[j]  & SC_MASK) >> 2) * 17;
-		u8 g = (((data[j] & 0x03) << 2) | ((data[j + 1] & SC_MASK) >> 4)) * 17;
-		u8 b = (data[j + 1]  & 0x0F) * 17;
-		j+=2;
-
-		GpSetPaletteEntry (i + first, r, g, b);
-	}
-}
-
 void CDG_MemPreset(unsigned char * data)
 {
 	int color = data[0] & SC_MASK;

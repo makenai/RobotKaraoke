@@ -21,17 +21,13 @@
 #ifndef __CDG_H__
 #define __CDG_H__
 
-#include "gpgraphic.h"
-#include "defines.h"
-
 #define SC_MASK 	0x3F
 #define SC_CDG_COMMAND 	0x09
 
 #define GP_RGB24(r,g,b) (((((r>>3))&0x1f)<<11)|((((g>>3))&0x1f)<<6)|((((b>>3))&0x1f)<<1))
 #define CDG_Pixel(x,y) CDG_screenBuffer[(240 * (x)) + (240 - (y))]
 
-typedef struct 
-{
+typedef struct {
 	unsigned char command;
 	unsigned char instruction;
 	unsigned char parityQ[2];
@@ -45,7 +41,6 @@ void CDG_Handler(SUBCODE * subCode);
 void CDG_MemPreset(unsigned char * data);
 void CDG_BorderPreset(unsigned char * data);
 void CDG_TileBlock(unsigned char * data);
-void GpSetPaletteEntry (u8 i, u8 r, u8 g, u8 b);
 void CDG_LoadCLUT(unsigned char * data, short first);
 void CDG_TileBlockXOR(unsigned char * data);
 
