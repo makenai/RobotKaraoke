@@ -12,12 +12,6 @@
 CDGFile::CDGFile() {
 }
 
-//The CD+G format takes advantage of the unused channels R thru W.  These unused
-//six bits are used to store graphics information. Note that this is an extremely
-//thin stream of information.  6 bits per byte * 16 bytes per packet * 4
-//packets per sector * 75 sectors per second = 28800 bits per second, or 3.6 K per
-//second.  By comparison, a typical 160 x 120 QuickTime movie uses 90K per second.
-
 int CDGFile::readNext() {
     
     Subcode subcode;
@@ -26,6 +20,7 @@ int CDGFile::readNext() {
     if (file.fail()) {
         cout << "ERROR: Cannot read the file..." << endl;
     }
+    byteCount += file.gcount();
     
     switch (subcode.instruction & SC_MASK) {
 
@@ -60,6 +55,10 @@ int CDGFile::readNext() {
             cout << "Unhandled instruction: " << (int)subcode.instruction << endl;
             break;
     }
+}
+
+long int CDGFile::bytesRead() {
+    return byteCount;
 }
 
 void CDGFile::setPixel(unsigned int x, unsigned int y, unsigned int c) {
@@ -123,8 +122,8 @@ int CDGFile::tileBlock(unsigned char *data) {
 	short color1 = data[1] & 0x0F;
 	short row = data[2] & 0x1F;
 	short col = data[3] & 0x3F;
-	int x_pos = (col * 6) + 10;
-	int y_pos = (row * 12) + 12;
+	int x_pos = (col * 6);
+	int y_pos = (row * 12);
     
 	for (int y=0; y<12; y++) {
 		setPixel(x_pos    , y_pos + y, data[y + 4] & 0x20 ? color1 : color0);
@@ -141,8 +140,8 @@ int CDGFile::tileBlockXor(unsigned char *data) {
 	short color1 = data[1] & 0x0F;
 	short row = data[2] & 0x1F;
 	short col = data[3] & 0x3F;
-	int x_pos = (col * 6) + 10;
-	int y_pos = (row * 12) + 12;
+	int x_pos = (col * 6);
+	int y_pos = (row * 12);
     
 	for (int y=0; y<12; y++) {
 		xorPixel(x_pos    , y_pos + y, data[y + 4] & 0x20 ? color1 : color0);

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-#include "CDGFile.h"
+#include "KaraokePlayer.h"
 
 class ofApp : public ofBaseApp{
     
-    CDGFile cdgFile;
+    KaraokePlayer karaokePlayer;
     ofImage cdgScreen;
     
 	public:

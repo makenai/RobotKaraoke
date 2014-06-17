@@ -36,6 +36,7 @@ class CDGFile {
     
     unsigned char pixelData[ CDG_WIDTH * CDG_HEIGHT ];
     unsigned char rgbaData[ 4 * CDG_WIDTH * CDG_HEIGHT ];
+    long int byteCount = 0;
     fstream file;
     
     void setPixel(unsigned int x, unsigned int y, unsigned int c);
@@ -53,6 +54,7 @@ public:
     CDGFile();
     int open(const char *filename);
     int readNext();
+    long int bytesRead();    
     unsigned char *pixels();
     
 };

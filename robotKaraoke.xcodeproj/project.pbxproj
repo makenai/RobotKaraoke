@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		C15E0933194FBFCD0072A548 /* KaraokePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15E0931194FBFCD0072A548 /* KaraokePlayer.cpp */; };
 		C19C1564194D586B00C7F4F6 /* CDGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C19C1562194D586B00C7F4F6 /* CDGFile.cpp */; };
 		C1DCEA0A194E3E0200097655 /* robotKaraoke.icns in Resources */ = {isa = PBXBuildFile; fileRef = C1DCEA07194E386D00097655 /* robotKaraoke.icns */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -62,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
+		C15E0931194FBFCD0072A548 /* KaraokePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KaraokePlayer.cpp; sourceTree = "<group>"; };
+		C15E0932194FBFCD0072A548 /* KaraokePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaraokePlayer.h; sourceTree = "<group>"; };
 		C19C1562194D586B00C7F4F6 /* CDGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDGFile.cpp; sourceTree = "<group>"; };
 		C19C1563194D586B00C7F4F6 /* CDGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDGFile.h; sourceTree = "<group>"; };
 		C1DCEA07194E386D00097655 /* robotKaraoke.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = robotKaraoke.icns; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				C19C1562194D586B00C7F4F6 /* CDGFile.cpp */,
 				C19C1563194D586B00C7F4F6 /* CDGFile.h */,
+				C15E0931194FBFCD0072A548 /* KaraokePlayer.cpp */,
+				C15E0932194FBFCD0072A548 /* KaraokePlayer.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -306,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				C15E0933194FBFCD0072A548 /* KaraokePlayer.cpp in Sources */,
 				C19C1564194D586B00C7F4F6 /* CDGFile.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 			);

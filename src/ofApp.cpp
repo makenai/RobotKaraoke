@@ -2,13 +2,17 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    cdgFile.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/MaryHadALittleLamb.cdg");
+    karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/MaryHadALittleLamb");
+    karaokePlayer.play();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    cdgFile.readNext();
-    cdgScreen.setFromPixels(cdgFile.pixels(), CDG_WIDTH, CDG_HEIGHT, OF_IMAGE_COLOR_ALPHA);
+    
+    ofSoundUpdate();
+    karaokePlayer.update();
+    
+    cdgScreen.setFromPixels(karaokePlayer.pixels(), CDG_WIDTH, CDG_HEIGHT, OF_IMAGE_COLOR_ALPHA);
     cdgScreen.update();
 }
 
@@ -17,8 +21,7 @@ void ofApp::draw(){
     ofBackground(255, 255, 255);
 
     ofSetColor(255,255,255);
-    cdgScreen.draw(0,0);
-    
+    cdgScreen.draw(10,10);
     
     int r = ofMap(mouseX, 0, 1024, 0, 255);
     int b = ofMap(mouseY, 0, 768, 0, 255);
