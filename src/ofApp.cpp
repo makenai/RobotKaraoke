@@ -2,8 +2,16 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/MaryHadALittleLamb");
+    karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/Queen");
     karaokePlayer.play();
+    
+    model.enableColors();
+    model.enableMaterials();
+    model.enableTextures();
+    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/Asimo.obj");
+    light.enable();
+    ofEnableDepthTest();
+
 }
 
 //--------------------------------------------------------------
@@ -18,15 +26,21 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofBackground(255, 255, 255);
+    //ofBackground(255, 255, 255);
 
-    ofSetColor(255,255,255);
+    ofSetColor(255,255,255,255);
     cdgScreen.draw(10,10);
+
+    model.setPosition(ofGetWidth()/2, (float)ofGetHeight() * 0.75 , 0);
+    model.drawFaces();
+    
     
     int r = ofMap(mouseX, 0, 1024, 0, 255);
     int b = ofMap(mouseY, 0, 768, 0, 255);
     ofSetColor( r, 0, b );
     ofCircle(mouseX, mouseY, 25);
+    
+
 }
 
 //--------------------------------------------------------------
@@ -41,6 +55,8 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y){
+    int angle = ofMap(x, 0, 1024, 0, 720);
+    model.setRotation(0, angle, 0, 1, 0);
 }
 
 //--------------------------------------------------------------

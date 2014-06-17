@@ -104,7 +104,6 @@ void CDGFile::borderPreset(unsigned char *data) {
     //    The border area is the area contained with a
     //    rectangle defined by (0,0,300,216) minus the interior pixels which are contained
     //    within a rectangle defined by (6,12,294,204).
-
 }
 
 void CDGFile::memPreset(unsigned char *data) {
