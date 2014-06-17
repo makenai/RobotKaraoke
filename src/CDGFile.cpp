@@ -12,6 +12,12 @@
 CDGFile::CDGFile() {
 }
 
+//The CD+G format takes advantage of the unused channels R thru W.  These unused
+//six bits are used to store graphics information. Note that this is an extremely
+//thin stream of information.  6 bits per byte * 16 bytes per packet * 4
+//packets per sector * 75 sectors per second = 28800 bits per second, or 3.6 K per
+//second.  By comparison, a typical 160 x 120 QuickTime movie uses 90K per second.
+
 int CDGFile::readNext() {
     
     Subcode subcode;
@@ -23,9 +29,23 @@ int CDGFile::readNext() {
     
     switch (subcode.instruction & SC_MASK) {
 
-        case 38:
+        case 1: // Memory Preset (set background color)
+            memPreset(subcode.data);
+            break;
+		case 2: // Border Preset
+            cout << "TODO: Border Preset" << endl;
+            break;
         case 6: // Tile Block (Normal)
             tileBlock(subcode.data);
+            break;
+        case 20: // Scroll Preset
+            cout << "TODO: Scroll Preset" << endl;
+            break;
+        case 24: // Scroll Copy
+            cout << "TODO: Scroll Copy" << endl;
+            break;
+        case 28: // Define Transparent Color
+            cout << "TODO: Define Transparent Color" << endl;
             break;
         case 30: // Load Color Table (entries 0-7)
             loadCLUT(subcode.data, 0);
@@ -33,14 +53,32 @@ int CDGFile::readNext() {
         case 31: // Load Color Table (entries 8-15)
             loadCLUT(subcode.data, 8);
             break;
+        case 38:
+            tileBlockXor(subcode.data);
+            break;
         default:
-            //cout << "Unhandled instruction: " << (int)subcode.instruction << endl;
+            cout << "Unhandled instruction: " << (int)subcode.instruction << endl;
             break;
     }
 }
 
+void CDGFile::setPixel(unsigned int x, unsigned int y, unsigned int c) {
+    pixelData[ (y * CDG_WIDTH) + x ] = c;
+}
+
+void CDGFile::xorPixel(unsigned int x, unsigned int y, unsigned int c) {
+    pixelData[ (y * CDG_WIDTH) + x ] ^= c;
+}
+
 unsigned char * CDGFile::pixels() {
-    return pixelData;
+    int j = 0;
+    for (int i=0;i<CDG_WIDTH*CDG_HEIGHT;i++) {
+        rgbaData[j++] = palette[ pixelData[i] ].r;
+        rgbaData[j++] = palette[ pixelData[i] ].g;
+        rgbaData[j++] = palette[ pixelData[i] ].b;
+        rgbaData[j++] = 255;
+    }
+    return rgbaData;
 }
 
 int CDGFile::open(const char *filename) {
@@ -50,9 +88,6 @@ int CDGFile::open(const char *filename) {
         exit(0);
     }
 }
-
-// RED = 240 0 25
-// ORANGE = 255 168 61
 
 int CDGFile::loadCLUT(unsigned char *data, short first) {
     int j=0;
@@ -66,12 +101,21 @@ int CDGFile::loadCLUT(unsigned char *data, short first) {
 	}
 }
 
-void CDGFile::setPixel(unsigned int x, unsigned int y, unsigned int c) {
-    unsigned int pixelOffset = ( y * 4 * CDG_WIDTH ) + ( x * 4 );
-    pixelData[ pixelOffset     ] = palette[ c ].r;
-    pixelData[ pixelOffset + 1 ] = palette[ c ].g;
-    pixelData[ pixelOffset + 2 ] = palette[ c ].b;
-    pixelData[ pixelOffset + 3 ] = 255;
+void CDGFile::borderPreset(unsigned char *data) {
+    //    The border area is the area contained with a
+    //    rectangle defined by (0,0,300,216) minus the interior pixels which are contained
+    //    within a rectangle defined by (6,12,294,204).
+
+}
+
+void CDGFile::memPreset(unsigned char *data) {
+    int color = data[0] & SC_MASK;
+    short repeat = data[1] & SC_MASK;
+	if (repeat == 0) {
+		for (int x=0;x<CDG_WIDTH;x++)
+			for (int y=0;y<CDG_HEIGHT;y++)
+				setPixel( x, y, color );
+	}
 }
 
 int CDGFile::tileBlock(unsigned char *data) {
@@ -79,10 +123,9 @@ int CDGFile::tileBlock(unsigned char *data) {
 	short color1 = data[1] & 0x0F;
 	short row = data[2] & 0x1F;
 	short col = data[3] & 0x3F;
-    
 	int x_pos = (col * 6) + 10;
 	int y_pos = (row * 12) + 12;
-	
+    
 	for (int y=0; y<12; y++) {
 		setPixel(x_pos    , y_pos + y, data[y + 4] & 0x20 ? color1 : color0);
 		setPixel(x_pos + 1, y_pos + y, data[y + 4] & 0x10 ? color1 : color0);
@@ -90,5 +133,23 @@ int CDGFile::tileBlock(unsigned char *data) {
 		setPixel(x_pos + 3, y_pos + y, data[y + 4] & 0x04 ? color1 : color0);
 		setPixel(x_pos + 4, y_pos + y, data[y + 4] & 0x02 ? color1 : color0);
 		setPixel(x_pos + 5, y_pos + y, data[y + 4] & 0x01 ? color1 : color0);
+	}
+}
+
+int CDGFile::tileBlockXor(unsigned char *data) {
+	short color0 = data[0] & 0x0F;
+	short color1 = data[1] & 0x0F;
+	short row = data[2] & 0x1F;
+	short col = data[3] & 0x3F;
+	int x_pos = (col * 6) + 10;
+	int y_pos = (row * 12) + 12;
+    
+	for (int y=0; y<12; y++) {
+		xorPixel(x_pos    , y_pos + y, data[y + 4] & 0x20 ? color1 : color0);
+		xorPixel(x_pos + 1, y_pos + y, data[y + 4] & 0x10 ? color1 : color0);
+		xorPixel(x_pos + 2, y_pos + y, data[y + 4] & 0x08 ? color1 : color0);
+		xorPixel(x_pos + 3, y_pos + y, data[y + 4] & 0x04 ? color1 : color0);
+		xorPixel(x_pos + 4, y_pos + y, data[y + 4] & 0x02 ? color1 : color0);
+		xorPixel(x_pos + 5, y_pos + y, data[y + 4] & 0x01 ? color1 : color0);
 	}
 }

@@ -13,10 +13,10 @@
 #include <fstream>
 using namespace std;
 
-#define SC_MASK 	0x3F
+#define SC_MASK     0x3F
 
-#define CDG_WIDTH  300
-#define CDG_HEIGHT 216
+#define CDG_WIDTH   300
+#define CDG_HEIGHT  216
 
 class CDGFile {
     
@@ -34,12 +34,17 @@ class CDGFile {
         unsigned int b;
     } Color;
     
-    unsigned char pixelData[ 4 * CDG_WIDTH * CDG_HEIGHT ];
+    unsigned char pixelData[ CDG_WIDTH * CDG_HEIGHT ];
+    unsigned char rgbaData[ 4 * CDG_WIDTH * CDG_HEIGHT ];
     fstream file;
     
     void setPixel(unsigned int x, unsigned int y, unsigned int c);
+    void xorPixel(unsigned int x, unsigned int y, unsigned int c);
     int loadCLUT(unsigned char *data, short first);
     int tileBlock(unsigned char *data);
+    int tileBlockXor(unsigned char *data);
+    void memPreset(unsigned char *data);
+    void borderPreset(unsigned char *data);
     
 public:
     
