@@ -12,6 +12,10 @@
 	<dict>
 		<key>18B9C72D-48C9-46FF-9C8F-8F656FCBBE8A</key>
 		<string>https://github.com/makenai/RobotKaraoke.git</string>
+		<key>2DEB7CEF-4FC1-4432-855A-52E676553CC7</key>
+		<string>ssh://github.com/gameoverhack/ofxOpenNI.git</string>
+		<key>4C478328-E737-41EB-B722-C963F3A9729B</key>
+		<string>ssh://github.com/alinakipoglu/ofxAssimpNISync.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>robotKaraoke.xcodeproj/project.xcworkspace</string>
@@ -19,6 +23,10 @@
 	<dict>
 		<key>18B9C72D-48C9-46FF-9C8F-8F656FCBBE8A</key>
 		<string>../..</string>
+		<key>2DEB7CEF-4FC1-4432-855A-52E676553CC7</key>
+		<string>../../../../../addons/ofxOpenNI</string>
+		<key>4C478328-E737-41EB-B722-C963F3A9729B</key>
+		<string>../../../../../addons/ofxAssimpNISync</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/makenai/RobotKaraoke.git</string>
@@ -28,6 +36,22 @@
 	<string>18B9C72D-48C9-46FF-9C8F-8F656FCBBE8A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4C478328-E737-41EB-B722-C963F3A9729B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxAssimpNISync</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2DEB7CEF-4FC1-4432-855A-52E676553CC7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxOpenNI</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

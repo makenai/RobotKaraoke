@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxOpenNI.h"
 #include "KaraokePlayer.h"
 #include "ofxAssimpModelLoader.h"
 

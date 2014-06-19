@@ -2,26 +2,24 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/Queen");
-    karaokePlayer.play();
+    //karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/Queen");
+    //karaokePlayer.play();
     
-    model.enableColors();
-    model.enableMaterials();
-    model.enableTextures();
-    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/Asimo.obj");
+    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/ED-209/ED-209.dae");
     light.enable();
     ofEnableDepthTest();
+    cout << model.getAnimationCount() << endl;
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    ofSoundUpdate();
-    karaokePlayer.update();
+    // ofSoundUpdate();
+    // karaokePlayer.update();
     
-    cdgScreen.setFromPixels(karaokePlayer.pixels(), CDG_WIDTH, CDG_HEIGHT, OF_IMAGE_COLOR_ALPHA);
-    cdgScreen.update();
+    //cdgScreen.setFromPixels(karaokePlayer.pixels(), CDG_WIDTH, CDG_HEIGHT, OF_IMAGE_COLOR_ALPHA);
+    //cdgScreen.update();
 }
 
 //--------------------------------------------------------------
@@ -29,7 +27,7 @@ void ofApp::draw(){
     //ofBackground(255, 255, 255);
 
     ofSetColor(255,255,255,255);
-    cdgScreen.draw(10,10);
+    //cdgScreen.draw(10,10);
 
     model.setPosition(ofGetWidth()/2, (float)ofGetHeight() * 0.75 , 0);
     model.drawFaces();
