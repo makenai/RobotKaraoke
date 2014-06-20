@@ -5,7 +5,7 @@ void ofApp::setup(){
     //karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/Queen");
     //karaokePlayer.play();
     
-    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/ED-209/ED-209.dae");
+    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/H25_humanoid_robot/H25_humanoid_robot.dae");
     light.enable();
     ofEnableDepthTest();
     cout << model.getAnimationCount() << endl;

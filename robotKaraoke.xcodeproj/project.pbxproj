@@ -14,6 +14,8 @@
 		C10369DA19500805005CE310 /* ofxAssimpTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C10369A919500805005CE310 /* ofxAssimpTexture.cpp */; };
 		C10369DB19500805005CE310 /* assimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C10369D619500805005CE310 /* assimp.a */; };
 		C15E0933194FBFCD0072A548 /* KaraokePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15E0931194FBFCD0072A548 /* KaraokePlayer.cpp */; };
+		C168D12619528F4200AAFFFC /* ofxAssimpNISync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C168D12219528F4200AAFFFC /* ofxAssimpNISync.cpp */; };
+		C168D12719528F4200AAFFFC /* ofxAssimpNISyncModelLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C168D12419528F4200AAFFFC /* ofxAssimpNISyncModelLoader.cpp */; };
 		C19C1564194D586B00C7F4F6 /* CDGFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C19C1562194D586B00C7F4F6 /* CDGFile.cpp */; };
 		C1D4E9051952868E00485E27 /* ofxOpenNI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4E9001952868E00485E27 /* ofxOpenNI.cpp */; };
 		C1D4E9061952868E00485E27 /* ofxOpenNITypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4E9021952868E00485E27 /* ofxOpenNITypes.cpp */; };
@@ -118,6 +120,10 @@
 		C10369D619500805005CE310 /* assimp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = assimp.a; sourceTree = "<group>"; };
 		C15E0931194FBFCD0072A548 /* KaraokePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KaraokePlayer.cpp; sourceTree = "<group>"; };
 		C15E0932194FBFCD0072A548 /* KaraokePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaraokePlayer.h; sourceTree = "<group>"; };
+		C168D12219528F4200AAFFFC /* ofxAssimpNISync.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssimpNISync.cpp; sourceTree = "<group>"; };
+		C168D12319528F4200AAFFFC /* ofxAssimpNISync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAssimpNISync.h; sourceTree = "<group>"; };
+		C168D12419528F4200AAFFFC /* ofxAssimpNISyncModelLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxAssimpNISyncModelLoader.cpp; sourceTree = "<group>"; };
+		C168D12519528F4200AAFFFC /* ofxAssimpNISyncModelLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxAssimpNISyncModelLoader.h; sourceTree = "<group>"; };
 		C19C1562194D586B00C7F4F6 /* CDGFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDGFile.cpp; sourceTree = "<group>"; };
 		C19C1563194D586B00C7F4F6 /* CDGFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDGFile.h; sourceTree = "<group>"; };
 		C1D4E9001952868E00485E27 /* ofxOpenNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNI.cpp; sourceTree = "<group>"; };
@@ -310,6 +316,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				C168D12019528F4200AAFFFC /* ofxAssimpNISync */,
 				C1D4E8F61952854A00485E27 /* ofxOpenNI */,
 				C10369A119500805005CE310 /* ofxAssimpModelLoader */,
 			);
@@ -454,6 +461,26 @@
 				C10369D619500805005CE310 /* assimp.a */,
 			);
 			path = osx;
+			sourceTree = "<group>";
+		};
+		C168D12019528F4200AAFFFC /* ofxAssimpNISync */ = {
+			isa = PBXGroup;
+			children = (
+				C168D12119528F4200AAFFFC /* src */,
+			);
+			name = ofxAssimpNISync;
+			sourceTree = "<group>";
+		};
+		C168D12119528F4200AAFFFC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C168D12219528F4200AAFFFC /* ofxAssimpNISync.cpp */,
+				C168D12319528F4200AAFFFC /* ofxAssimpNISync.h */,
+				C168D12419528F4200AAFFFC /* ofxAssimpNISyncModelLoader.cpp */,
+				C168D12519528F4200AAFFFC /* ofxAssimpNISyncModelLoader.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxAssimpNISync/src;
 			sourceTree = "<group>";
 		};
 		C1D4E8F61952854A00485E27 /* ofxOpenNI */ = {
@@ -841,11 +868,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C10369DA19500805005CE310 /* ofxAssimpTexture.cpp in Sources */,
+				C168D12719528F4200AAFFFC /* ofxAssimpNISyncModelLoader.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				C10369D819500805005CE310 /* ofxAssimpMeshHelper.cpp in Sources */,
 				C1D4E9051952868E00485E27 /* ofxOpenNI.cpp in Sources */,
 				C1D4E9061952868E00485E27 /* ofxOpenNITypes.cpp in Sources */,
 				C15E0933194FBFCD0072A548 /* KaraokePlayer.cpp in Sources */,
+				C168D12619528F4200AAFFFC /* ofxAssimpNISync.cpp in Sources */,
 				C19C1564194D586B00C7F4F6 /* CDGFile.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				C10369D919500805005CE310 /* ofxAssimpModelLoader.cpp in Sources */,
