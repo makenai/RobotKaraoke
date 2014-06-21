@@ -4,10 +4,16 @@ This is an interactive karaoke project involving robots for RobotsConf 2014.
 
 The tagline I'm going with is:
 
-"Karaoke for introverted or insecure humanoids"
+"Karaoke for introverted humanoids"
 
+Basically, a karaoke player that modulates your voice and captures your body motion using a kinect to re-cast you as a robot character of your choosing. A robot has no inhibitions.
 
-This is built using [OpenFrameworks](http://openframeworks.cc/) and is built under XCode 5.
+	  i_i    La la la la
+	 [@_@]  /
+	/|___|\
+	 d   b
+
+This is built using [OpenFrameworks](http://openframeworks.cc/) and compiles under XCode 5.
 
 ##Resources
 
