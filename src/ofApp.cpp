@@ -2,14 +2,28 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetLogLevel(OF_LOG_VERBOSE);
+    
+    openNIDevice.setup();
+    openNIDevice.addImageGenerator();
+    openNIDevice.addDepthGenerator();
+    openNIDevice.setRegister(true);
+    openNIDevice.setMirror(true);
+    openNIDevice.addUserGenerator();
+    openNIDevice.setMaxNumUsers(2);
+    openNIDevice.start();
+    
     //karaokePlayer.open("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/Queen");
     //karaokePlayer.play();
     
-    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/H25_humanoid_robot/H25_humanoid_robot.dae");
+    model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/ED-209/ED-209.dae");
+    //model.loadModel("/Users/pawels/Documents/OpenFrameworks/apps/myApps/robotKaraoke/data/models/H25_humanoid_robot/H25_humanoid_robot.dae");
+    
+    //assimpNISync.setup( &model, NULL );
+    //assimpNISync.listBoneNames();
+    
     light.enable();
     ofEnableDepthTest();
-    cout << model.getAnimationCount() << endl;
-
 }
 
 //--------------------------------------------------------------
@@ -64,7 +78,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    model.waggle();
 }
 
 //--------------------------------------------------------------

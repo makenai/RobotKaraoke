@@ -5,11 +5,14 @@
 #include "KaraokePlayer.h"
 #include "ofxAssimpModelLoader.h"
 #include "ofxAssimpNISyncModelLoader.h"
+#include "ofxAssimpNISync.h"
 
 class ofApp : public ofBaseApp{
     
     ofLight light;
 
+    ofxOpenNI openNIDevice;
+    ofxAssimpNISync assimpNISync;
     ofxAssimpNISyncModelLoader model;
 //    ofxAssimpModelLoader model;
     KaraokePlayer karaokePlayer;
