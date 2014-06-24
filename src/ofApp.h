@@ -11,6 +11,7 @@ class ofApp : public ofBaseApp{
     
     ofLight light;
 
+    ofSoundStream soundStream;
     ofxOpenNI openNIDevice;
     ofxAssimpNISync assimpNISync;
     ofxAssimpNISyncModelLoader model;
@@ -32,4 +33,5 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+        void audioReceived(float *input, int bufferSize, int nChannels);
 };
