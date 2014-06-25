@@ -40,7 +40,7 @@ void ofApp::setup(){
     
     light.enable();
     ofEnableDepthTest();
-    soundStream.setup( this, 0, 1, 44100, 512, 4);
+    soundStream.setup( this, 1, 1, 44100, 512, 4);
 }
 
 //--------------------------------------------------------------
@@ -116,5 +116,10 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::audioReceived(float *input, int bufferSize, int nChannels) {
-    
+    audioOut(input, bufferSize, nChannels);
+}
+
+void ofApp::audioOut(float *output, int bufferSize, int nChannels) {
+    for (int i=0;i<bufferSize;i++) {
+    }
 }
