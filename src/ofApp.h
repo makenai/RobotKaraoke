@@ -18,6 +18,7 @@ class ofApp : public ofBaseApp{
 //    ofxAssimpModelLoader model;
     KaraokePlayer karaokePlayer;
     ofImage cdgScreen;
+    vector <float> audioBuffer;
     
 	public:
 		void setup();
